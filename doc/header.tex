@@ -1,4 +1,4 @@
-\documentclass[12pt,oneside,a5paper]{article}
+\documentclass[12pt,oneside,a5paper]{book}
 
 %% mobile phone optimized
 % \usepackage[paperwidth=210mm,paperheight=145mm,margin=2mm]{geometry}
@@ -46,7 +46,22 @@
 
 % misc
 \newcommand{\email}[1]{$<$\href{mailto:#1}{#1}$>$}
+\newcommand{\link}[2]{\href{#2}{#1}}
 \renewcommand{\emph}[1]{\textcolor{red}{#1}}
 \newcommand{\term}[1]{\textcolor{green}{#1}}
 \newcommand{\termdef}[2]{\textcolor{green}{#1}\index{#2}}
 \newcommand{\note}[1]{\,\footnote{\ #1}}
+
+% [nosep] option in lists/enums
+\usepackage{enumitem}
+% frame box
+\usepackage{framed}
+% indexing
+
+% languages
+\newcommand{\py}{Python}
+\newcommand{\rs}{Rust}
+\newcommand{\Cpp}{$C^{+}_{+}$}
+\newcommand{\erl}{Erlang}
+\newcommand{\ex}{Elixir}
+\newcommand{\st}{Smalltalk}
