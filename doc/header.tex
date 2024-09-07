@@ -1,17 +1,52 @@
-\documentclass[10pt,oneside]{article}
+\documentclass[12pt,oneside,a5paper]{article}
 
 %% mobile phone optimized
-\usepackage[paperwidth=210mm,paperheight=145mm,margin=2mm]{geometry}
+% \usepackage[paperwidth=210mm,paperheight=145mm,margin=2mm]{geometry}
+% %% A5 electronic
+% \usepackage[paperwidth=148mm,paperheight=210mm,margin=2mm]{geometry}
+%% xpdf preview
+\usepackage[paperwidth=130mm,paperheight=200mm,margin=2mm]{geometry}
+%% font setup for screen reading
 \renewcommand{\familydefault}{\sfdefault}\normalfont
+%% hyperlinks pdf style
 \usepackage[unicode,colorlinks=true]{hyperref}
+% %% fix heading styles for tiny paper
+% \usepackage{titlesec}
+% \titleformat{\chapter}{\Large\bfseries}{\thechapter.}{1em}{}
+% \titleformat{\section}{\large\bfseries}{\thesection.}{1em}{}
+% %% fix first blank page
+% %% https://tex.stackexchange.com/questions/140168/how-to-remove-a-blank-page-before-the-title-page
+% \usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+% \AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
 
-\usepackage{titlesec}
-\titleformat{\chapter}{\Large\bfseries}{\thechapter.}{1em}{}
-\titleformat{\section}{\large\bfseries}{\thesection.}{1em}{}
+% graphics
+\usepackage[pdftex]{graphicx}
+\newcommand{\fig}[3]{\bigskip\noindent\includegraphics[#3]{#2}\textbf{#1}\bigskip}
 
-%% fix first blank page
-%% https://tex.stackexchange.com/questions/140168/how-to-remove-a-blank-page-before-the-title-page
-\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
-\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+% relative sectioning
+\usepackage{ifthen}
+\newcounter{secdepth}\setcounter{secdepth}{0}
+\newcommand{\secup}{\addtocounter{secdepth}{1}}
+\newcommand{\secdown}{\addtocounter{secdepth}{-1}}
+\newcommand{\secrel}[1]{
+\ifthenelse{\equal{\value{secdepth}}{0}}{\part{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-1}}{\chapter{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-2}}{\section{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-3}}{\subsection{#1}}{}
+\ifthenelse{\equal{\value{secdepth}}{-4}}{\subsubsection{#1}}{}
+}
+\newcommand{\secly}[1]{
+\section*{#1}
+\addcontentsline{toc}{section}{#1}
+}
+\newcommand{\subsecly}[1]{
+\subsection*{#1}
+\addcontentsline{toc}{subsection}{#1}
+}
 
-
+% misc
+\newcommand{\email}[1]{$<$\href{mailto:#1}{#1}$>$}
+\renewcommand{\emph}[1]{\textcolor{red}{#1}}
+\newcommand{\term}[1]{\textcolor{green}{#1}}
+\newcommand{\termdef}[2]{\textcolor{green}{#1}\index{#2}}
+\newcommand{\note}[1]{\,\footnote{\ #1}}

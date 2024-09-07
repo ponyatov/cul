@@ -47,9 +47,9 @@ bin/$(MODULE): $(C) $(H)
 
 # doc
 
-TEX = $(DOC)/$(MODULE).tex $(DOC)/header.tex $(wildcard doc/*.tex)
+TEX = $(wildcard doc/*.tex)
 LATEX = pdflatex -output-directory=$(TMP) -halt-on-error
-# -halt-on-error -interaction=batchmode -file-line-error \
+# -interaction=batchmode -file-line-error
 
 .PHONY: doc
 doc: tmp/$(MODULE)_$(NOW)_$(REL)_$(BRANCH).pdf
@@ -57,11 +57,11 @@ tmp/$(MODULE)_$(NOW)_$(REL)_$(BRANCH).pdf: tmp/$(MODULE).pdf
 	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen \
 		-dNOPAUSE -dQUIET -dBATCH -sOutputFile=$@ $<
 tmp/$(MODULE).pdf: $(TEX) $(FIG) Makefile
-	cd doc ; $(LATEX) $< && $(LATEX) $<
+	cd doc ; $(LATEX) $(MODULE) && $(LATEX) $(MODULE)
 
 .PHONY: doxy
-doxy: .doxygen $(C) $(H)
-	rm -rf doc/ref ; doxygen $<
+doxy: .doxygen $(C) $(H) README.md
+	rm -rf docs doc/ref; doxygen $< 1>/dev/null
 
 # install
 .PHONY: install update ref gz
