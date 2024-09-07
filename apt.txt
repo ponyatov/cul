@@ -1,0 +1,5 @@
+git make curl
+code meld doxygen clang-format
+g++ flex bison libreadline-dev
+gcc-arm-none-eabi gdb-multiarch stlink-gui ragel
+texlive-latex-extra texlive-latex-recommended
