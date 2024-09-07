@@ -1,4 +1,17 @@
 \documentclass[10pt,oneside]{article}
 
-\usepackage[paperwidth=118.8mm,paperheight=68.2mm,margin=2mm]{geometry}
+%% mobile phone optimized
+\usepackage[paperwidth=210mm,paperheight=145mm,margin=2mm]{geometry}
 \renewcommand{\familydefault}{\sfdefault}\normalfont
+\usepackage[unicode,colorlinks=true]{hyperref}
+
+\usepackage{titlesec}
+\titleformat{\chapter}{\Large\bfseries}{\thechapter.}{1em}{}
+\titleformat{\section}{\large\bfseries}{\thesection.}{1em}{}
+
+%% fix first blank page
+%% https://tex.stackexchange.com/questions/140168/how-to-remove-a-blank-page-before-the-title-page
+\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+
+
